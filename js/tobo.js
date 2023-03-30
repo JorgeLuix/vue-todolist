@@ -16,6 +16,9 @@ createApp ({
       }
       
     },
-}
-   
+    deleteItem(index) {
+      this.shoppingList.splice(index, 1);
+    }
+  },
+ 
 }).mount('#app')

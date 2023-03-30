@@ -13,12 +13,25 @@
     <div id="app">
         <div class="container w-100 vh-100 justify-content-center align-items-center">
             <h2>La mia lista della spesa</h2>
-            <div v-if="shoppingList.length === 0">Lista vuota, devi fare la spesa!</div>
-              <input type="text" v-model="newItem" @keyup.enter="newItem">
-              <button @click="addItem">
-                <i class="fa-solid fa-pen-to-square"></i>
-              </button>
+
+            <div>
+                <input type="text" v-model="newItem" @keyup.enter="newItem">
+                <button @click="addItem">
+                  <i class="fa-solid fa-pen-to-square"></i>
+                </button>
             </div>
+
+            <div v-if="shoppingList.length === 0">Lista vuota, devi fare la spesa!</div>
+            <ul v-else>
+              <li v-for="(item, index) in shoppingList"
+              :key="index" >
+                {{ item }}
+                <button @click="deleteItem(index)">
+                    <i class="fa-solid fa-trash"></i>
+                </button>
+              </li>
+            </ul>
+          
           </div>
     </div>
 
