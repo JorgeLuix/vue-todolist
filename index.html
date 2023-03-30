@@ -15,7 +15,7 @@
             <h2>La mia lista della spesa</h2>
 
             <div>
-                <input type="text" v-model="newItem" @keyup.enter="newItem">
+                <input type="text" v-model="newItem" @keyup.enter="addItem">
                 <button @click="addItem">
                   <i class="fa-solid fa-pen-to-square"></i>
                 </button>
@@ -24,8 +24,8 @@
             <div v-if="shoppingList.length === 0">Lista vuota, devi fare la spesa!</div>
             <ul v-else>
               <li v-for="(item, index) in shoppingList"
-              :key="index" >
-                {{ item }}
+              :key="index" :class="{ 'done': item.done }" @click="toggleDone(index)">
+                {{ item.text }}
                 <button @click="deleteItem(index)">
                     <i class="fa-solid fa-trash"></i>
                 </button>

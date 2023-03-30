@@ -3,22 +3,32 @@ const { createApp } = Vue;
 createApp ({
   data() {
     return {
-      shoppingList: [],
-      newItem: ''
+      shoppingList: [
+        { text: 'Mele', done: false },
+        { text: 'Arance', done: true },
+        { text: 'Pere', done: false }
+      ],
+      newItem: '',
     }
   },
   methods: {
     addItem() {
-      completed= false;
+      
       if (this.newItem.trim() !== '') {
-        this.shoppingList.push(this.newItem.trim());
-        this.newItem = '';
+        this.shoppingList.push({
+            text: this.newItem.trim(),
+            done: false
+          });
+          this.newItem = '';
       }
       
     },
     deleteItem(index) {
       this.shoppingList.splice(index, 1);
+    },
+    toggleDone(index) {
+        this.shoppingList[index].done = !this.shoppingList[index].done;
     }
-  },
+  }
  
-}).mount('#app')
+}).mount('#app');
